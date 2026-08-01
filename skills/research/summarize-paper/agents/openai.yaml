@@ -1,0 +1,4 @@
+interface:
+  display_name: "Summarize Paper"
+  short_description: "Guided multimodal paper reading with rigorous evidence"
+  default_prompt: "Use $summarize-paper in Guided Deep Taste mode to help me actively understand this paper through text, equations, original figures, focused interactive visuals, predictions, and evidence checks."

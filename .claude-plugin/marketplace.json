@@ -1,0 +1,17 @@
+{
+  "name": "nagi-studio",
+  "owner": {
+    "name": "Nagi Studio",
+    "url": "https://github.com/nagi-studio"
+  },
+  "description": "Nagi Studio's agent skills, as an installable Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "nagi-skills",
+      "source": "./",
+      "description": "Agent skills for research reading and study, starting with evidence-led academic paper reading.",
+      "category": "research",
+      "keywords": ["research", "paper-reading", "arxiv", "learning"]
+    }
+  ]
+}
