@@ -1,7 +1,7 @@
 {
   "name": "nagi-skills",
   "version": "0.1.0",
-  "description": "Nagi Studio's agent skills for research reading and study — evidence-led paper reading with guided deep taste, LaTeX, original figures, and focused explanatory UI.",
+  "description": "Nagi Studio's agent skills — evidence-led research reading, plus a low-cognitive-load output style for agents that do the work while you review.",
   "author": {
     "name": "Nagi Studio",
     "url": "https://github.com/nagi-studio"
@@ -14,7 +14,12 @@
     "research",
     "paper-reading",
     "arxiv",
-    "learning"
+    "learning",
+    "productivity",
+    "writing-style"
   ],
-  "skills": ["./skills/research/summarize-paper"]
+  "skills": [
+    "./skills/research/summarize-paper",
+    "./skills/productivity/plain-output"
+  ]
 }
