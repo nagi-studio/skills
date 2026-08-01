@@ -35,7 +35,7 @@ npx skills@latest add nagi-studio/Nagi-Skill
 
 ### Productivity
 
-- **[plain-output](./skills/productivity/plain-output/SKILL.md)** — 低认知负荷的输出风格。把 agent 当执行方、自己只做验收：结论先行、实测过才说做完、需要人工验收的产物直接打开而不是甩路径、能做的一次做完、卡住三轮就止损。
+- **[adhd-friendly](./skills/productivity/adhd-friendly/SKILL.md)** — ADHD 友好的输出风格，减轻认知负荷和启动成本。把 agent 当执行方、自己只做验收：结论先行、实测过才说做完、需要人工验收的产物直接打开而不是甩路径、能做的一次做完、卡住三轮就止损。
 
 ## 维护
 
