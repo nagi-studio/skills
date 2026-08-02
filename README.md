@@ -1,6 +1,10 @@
 # Nagi Skills
 
-Nagi Studio 的 agent skills。两条线：**研究阅读**（把读论文当成有证据纪律的研究工作，而不是通用摘要），和**输出风格**（让 agent 干活、你只做验收）。
+**中文** · [English](./README.en.md)
+
+Nagi Studio 每天在用的 agent skills，直接从 `.agents` 目录里搬出来的。
+
+共同的标准只有一条：不许含糊。读论文要分得清哪句是原文、哪句是推断；干活要实测过才能说做完。写出来好用的就往这儿放，所以这个仓库会一直长。
 
 Skills 遵循 [Agent Skills](https://code.claude.com/docs/en/skills) 格式（`SKILL.md` + `agents/openai.yaml`），在 Claude Code、Codex 以及任何兼容 harness 上都能用。
 
