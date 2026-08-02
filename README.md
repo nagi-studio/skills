@@ -9,14 +9,14 @@ Skills 遵循 [Agent Skills](https://code.claude.com/docs/en/skills) 格式（`S
 ### Claude Code
 
 ```bash
-/plugin marketplace add nagi-studio/Nagi-Skills
+/plugin marketplace add nagi-studio/skills
 /plugin install nagi-skills@nagi-studio
 ```
 
 ### Codex 及其他 agent
 
 ```bash
-npx skills@latest add nagi-studio/Nagi-Skills
+npx skills@latest add nagi-studio/skills
 ```
 
 ### 手动 / 本地开发
