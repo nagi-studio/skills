@@ -1,4 +1,4 @@
-# Nagi Skill
+# Nagi Skills
 
 Nagi Studio 的 agent skills。两条线：**研究阅读**（把读论文当成有证据纪律的研究工作，而不是通用摘要），和**输出风格**（让 agent 干活、你只做验收）。
 
@@ -9,14 +9,14 @@ Skills 遵循 [Agent Skills](https://code.claude.com/docs/en/skills) 格式（`S
 ### Claude Code
 
 ```bash
-/plugin marketplace add nagi-studio/Nagi-Skill
+/plugin marketplace add nagi-studio/Nagi-Skills
 /plugin install nagi-skills@nagi-studio
 ```
 
 ### Codex 及其他 agent
 
 ```bash
-npx skills@latest add nagi-studio/Nagi-Skill
+npx skills@latest add nagi-studio/Nagi-Skills
 ```
 
 ### 手动 / 本地开发
