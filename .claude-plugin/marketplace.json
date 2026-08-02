@@ -9,9 +9,9 @@
     {
       "name": "nagi-skills",
       "source": "./",
-      "description": "Agent skills for research reading and study, starting with evidence-led academic paper reading.",
-      "category": "research",
-      "keywords": ["research", "paper-reading", "arxiv", "learning"]
+      "description": "Skills that make the agent prove it. Straight from Nagi Studio's .agents directory.",
+      "category": "productivity",
+      "keywords": ["skills", "agent-skills", "claude-code", "codex"]
     }
   ]
 }

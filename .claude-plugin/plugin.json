@@ -1,7 +1,7 @@
 {
   "name": "nagi-skills",
   "version": "0.1.0",
-  "description": "Nagi Studio's agent skills — evidence-led research reading, plus a low-cognitive-load output style for agents that do the work while you review.",
+  "description": "Skills that make the agent prove it. Straight from Nagi Studio's .agents directory.",
   "author": {
     "name": "Nagi Studio",
     "url": "https://github.com/nagi-studio"
@@ -11,12 +11,11 @@
   "license": "MIT",
   "keywords": [
     "skills",
+    "agent-skills",
+    "claude-code",
+    "codex",
     "research",
-    "paper-reading",
-    "arxiv",
-    "learning",
-    "productivity",
-    "writing-style"
+    "productivity"
   ],
   "skills": [
     "./skills/research/summarize-paper",
