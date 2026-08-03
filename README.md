@@ -39,7 +39,7 @@ npx skills@latest add nagi-studio/skills
 
 ### Productivity
 
-- **[adhd-friendly](./skills/productivity/adhd-friendly/SKILL.md)** — ADHD 友好的输出风格，减轻认知负荷和启动成本。把 agent 当执行方、自己只做验收：结论先行、实测过才说做完、需要人工验收的产物直接打开而不是甩路径、能做的一次做完、卡住三轮就止损。
+- **[adhd-friendly](./skills/productivity/adhd-friendly/SKILL.md)** — ADHD 友好的输出风格，减轻认知负荷和启动成本。把 agent 当执行方、自己只做验收：结论先行、实测过才说做完、需要人工验收的产物直接打开而不是甩路径、能做的一次做完、卡住三轮就止损。写报告和实验记录时另有一份[用词对照表](./skills/productivity/adhd-friendly/references/wording.md)：用标准术语，不拿比喻当术语，不用口语词和拟人表述。
 
 ## 顺手推荐
 
