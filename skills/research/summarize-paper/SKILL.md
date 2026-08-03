@@ -1,6 +1,6 @@
 ---
 name: summarize-paper
-description: "Read and analyze academic papers through Quick Report, Guided Deep Taste, or one-shot Deep Report. Default requests such as 深入理解, 深度品味, 吃透, or 带我读 to an interactive, prediction-led deep reading that interleaves prose, LaTeX, original paper figures, and focused explanatory UI. Use Deep Report only when the user explicitly requests a complete one-shot analysis, review, or non-interactive report. Use with PDFs, arXiv pages, URLs, local files, paper titles, or BibTeX."
+description: "Reads academic papers and teaches them through Quick Report, Guided Deep Taste (interactive, prediction-led, the default), or one-shot Deep Report. Use when users ask 深入理解/深度品味/吃透/带我读/summarize this paper, or supply a PDF, arXiv page, URL, local file, paper title, or BibTeX. Not for threads, blog posts, or abstract-only summaries."
 ---
 
 # Summarize Paper
