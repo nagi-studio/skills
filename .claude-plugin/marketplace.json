@@ -1,0 +1,17 @@
+{
+  "name": "nagi-studio",
+  "owner": {
+    "name": "Nagi Studio",
+    "url": "https://github.com/nagi-studio"
+  },
+  "description": "Nagi Studio's agent skills, as an installable Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "nagi-skills",
+      "source": "./",
+      "description": "Skills that make the agent prove it. Straight from Nagi Studio's .agents directory.",
+      "category": "productivity",
+      "keywords": ["skills", "agent-skills", "claude-code", "codex"]
+    }
+  ]
+}
