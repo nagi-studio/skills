@@ -1,6 +1,8 @@
 # Nagi Skills
 
-Agent skills, following the [Agent Skills](https://code.claude.com/docs/en/skills) format (`SKILL.md` + `agents/openai.yaml`).
+**中文** · [English](./README.en.md)
+
+遵循 [Agent Skills](https://code.claude.com/docs/en/skills) 格式（`SKILL.md` + `agents/openai.yaml`）的 agent skills，在 Claude Code、Codex、Cursor 等 harness 上都能用。
 
 ## For agents
 
