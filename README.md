@@ -43,7 +43,7 @@ npx skills@latest add nagi-studio/skills -g
 
 #### Pondering
 
-- [`grill`](./skills/pondering/grill)：分轮追问你的计划或想法，直到重要未知暴露出来。5 档强度，任何领域都能用。
+- [`grill`](./skills/pondering/grill)：分轮追问你的计划或想法，直到重要未知暴露出来。5 档强度，任何领域都能用。[📺 视频](https://www.bilibili.com/video/BV1irHx6dEEf)
 
 ### Credits
 

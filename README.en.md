@@ -43,7 +43,7 @@ Symlinks every skill in this repo into each agent's global skills directory. Run
 
 #### Pondering
 
-- [`grill`](./skills/pondering/grill): Questions you about a plan or idea, round by round, until the important unknowns surface. Five intensity levels. Works for any domain.
+- [`grill`](./skills/pondering/grill): Questions you about a plan or idea, round by round, until the important unknowns surface. Five intensity levels. Works for any domain. [📺 Video (Chinese)](https://www.bilibili.com/video/BV1irHx6dEEf)
 
 ### Credits
 
