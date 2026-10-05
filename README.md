@@ -4,9 +4,9 @@ Agent skills, following the [Agent Skills](https://code.claude.com/docs/en/skill
 
 ## Skills
 
-### Thinking
+### Pondering
 
-- [`grill`](./skills/thinking/grill)：分轮追问你的计划或想法，直到重要未知暴露出来。5 档强度，任何领域都能用。
+- [`grill`](./skills/pondering/grill)：分轮追问你的计划或想法，直到重要未知暴露出来。5 档强度，任何领域都能用。
 
 ## Credits
 
