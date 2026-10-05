@@ -17,5 +17,7 @@
     "research",
     "productivity"
   ],
-  "skills": []
+  "skills": [
+    "./skills/thinking/grill"
+  ]
 }

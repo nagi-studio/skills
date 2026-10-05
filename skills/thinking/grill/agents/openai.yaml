@@ -1,0 +1,4 @@
+interface:
+  display_name: "Grill"
+  short_description: "分轮追问你的想法，直到重要未知暴露出来"
+  default_prompt: "拷打一下我的这个想法："
