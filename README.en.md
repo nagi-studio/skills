@@ -2,8 +2,6 @@
 
 [中文](./README.md) · **English**
 
-Agent skills in the [Agent Skills](https://code.claude.com/docs/en/skills) format (`SKILL.md` + `agents/openai.yaml`). They work in Claude Code, Codex, Cursor, and other compatible harnesses.
-
 ## For agents
 
 Send this to your agent:
