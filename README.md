@@ -28,10 +28,10 @@
 #### Codex、Cursor、Antigravity 等其他 agent
 
 ```bash
-npx skills@latest add nagi-studio/skills
+npx skills@latest add nagi-studio/skills -g
 ```
 
-用的是 [skills CLI](https://github.com/vercel-labs/skills)，会自动识别本机装了哪些 agent，装进各自的 skills 目录（多数是 `.agents/skills/`）。加 `-g` 装到全局，加 `-a <agent>` 指定某个 agent。
+用的是 [skills CLI](https://github.com/vercel-labs/skills)，会自动识别本机装了哪些 agent，装进各自的 skills 目录（多数是 `.agents/skills/`）。`-g` 表示装到全局，所有项目都能用；去掉它就只装进当前项目。加 `-a <agent>` 可以指定某个 agent。
 
 #### 本地开发
 

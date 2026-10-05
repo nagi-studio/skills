@@ -28,10 +28,10 @@ Install the skills from https://github.com/nagi-studio/skills
 #### Codex, Cursor, Antigravity, and other agents
 
 ```bash
-npx skills@latest add nagi-studio/skills
+npx skills@latest add nagi-studio/skills -g
 ```
 
-This uses the [skills CLI](https://github.com/vercel-labs/skills). It detects which agents you have installed and puts the skills in each one's skills directory (usually `.agents/skills/`). Add `-g` to install globally, or `-a <agent>` to target a specific agent.
+This uses the [skills CLI](https://github.com/vercel-labs/skills). It detects which agents you have installed and puts the skills in each one's skills directory (usually `.agents/skills/`). `-g` installs globally so every project can use them; drop it to install into the current project only. Add `-a <agent>` to target a specific agent.
 
 #### Local development
 
