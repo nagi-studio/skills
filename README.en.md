@@ -32,7 +32,15 @@ This uses the [skills CLI](https://github.com/vercel-labs/skills). It detects wh
 
 ## Update
 
-Installed skills don't follow this repo on their own. Run an update when a new version is out:
+Installed skills don't follow this repo on their own. When a new version is out, send this to your agent:
+
+```
+Update the skills from https://github.com/nagi-studio/skills
+```
+
+> **Agent, do this:** for each installed skill from this repo, run `npx skills@latest update <skill-name> -g -y`. If the user installed it as a Claude Code plugin, run `claude plugin marketplace update nagi-studio` and `claude plugin update nagi-skills@nagi-studio`. When done, remind the user to restart the session.
+
+To update it yourself:
 
 ```bash
 npx skills@latest update grill -g

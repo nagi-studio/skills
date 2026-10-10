@@ -32,7 +32,15 @@ npx skills@latest add nagi-studio/skills -g
 
 ## 更新
 
-装好的 skill 不会自己跟着仓库更新，仓库有新版本时手动跑一次：
+装好的 skill 不会自己跟着仓库更新。仓库有新版本时，把这句话发给你的 agent：
+
+```
+帮我更新 https://github.com/nagi-studio/skills 里的 skills
+```
+
+> **Agent 请照做：** 对这个仓库里已安装的每个 skill 运行 `npx skills@latest update <skill 名> -g -y`。如果用户是用 Claude Code 插件装的，运行 `claude plugin marketplace update nagi-studio` 和 `claude plugin update nagi-skills@nagi-studio`。更新完提醒用户重启会话。
+
+自己更新：
 
 ```bash
 npx skills@latest update grill -g
