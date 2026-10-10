@@ -70,7 +70,7 @@ claude plugin update nagi-skills@nagi-studio
 
 - [`grill`](./skills/pondering/grill)：分轮追问你的计划或想法，直到重要未知暴露出来。5 档强度，任何领域都能用。[📺 视频](https://www.bilibili.com/video/BV1irHx6dEEf)
   - 来源：思路受 Matt Pocock 的 [grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)（MIT）启发，重写为面向所有人的通用版：中文、5 档追问强度、问到「剩下的未知不再影响下一步」就停。
-- [`architect`](./skills/pondering/architect)：需求清楚之后，比较两三套技术方案并推荐一套。按你守得住的程度排序，每套写明你要亲自守住哪些密钥和权限。接着 grill 的决策记录往下做。
+- [`architect`](./skills/pondering/architect)：需求清楚之后，比较两三套技术方案并推荐一套。按你管得过来的程度排序，每套写明你得自己管哪些密钥和权限。接着 grill 的决策记录往下做。
 
 ## 维护
 
