@@ -35,7 +35,7 @@ policy:
 ## 新增 skill 后
 
 1. 把路径加进 `.claude-plugin/plugin.json` 的 `skills` 数组。
-2. 在 `README.md` 的对应分类下加一行说明。
+2. 在 `README.md` 和 `README.en.md` 的对应分类下各加一行说明。
 3. 提 PR 前先跑一遍 `./scripts/link-skills.sh`，在真实任务上试用过再合并。
 
 ## 隐私
