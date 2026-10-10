@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architect"
+  short_description: "需求清楚之后，比较两三套技术方案并推荐一套"
+  default_prompt: "帮我给这个项目选技术方案："

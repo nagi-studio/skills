@@ -70,6 +70,7 @@ Then run `/reload-plugins` in any open session, or restart.
 
 - [`grill`](./skills/pondering/grill): Questions you about a plan or idea, round by round, until the important unknowns surface. Five intensity levels. Works for any domain. [📺 Video (Chinese)](https://www.bilibili.com/video/BV1irHx6dEEf)
   - Credit: inspired by Matt Pocock's [grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling) (MIT), rewritten as a general-purpose version for everyone: Chinese-first, five intensity levels, and it stops once the remaining unknowns no longer change the next step.
+- [`architect`](./skills/pondering/architect): Once the requirements are clear, compares two or three tech stacks and recommends one. Ranked by what you can actually maintain; each option lists the keys and permissions you would have to guard yourself. Picks up from grill's decision log.
 
 ## Maintaining
 
