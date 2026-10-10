@@ -9,7 +9,7 @@
     {
       "name": "nagi-skills",
       "source": "./",
-      "description": "Skills that make the agent prove it. Straight from Nagi Studio's .agents directory.",
+      "description": "Companion skills for the Bilibili series Re:从零开始的AI学习. Each skill has an episode that explains why.",
       "category": "productivity",
       "keywords": ["skills", "agent-skills", "claude-code", "codex"]
     }

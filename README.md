@@ -2,6 +2,8 @@
 
 **中文** · [English](./README.en.md)
 
+配套《Re:从零开始的AI学习》，每个 skill 都有一期视频讲为什么这么做。[📺 合集](https://space.bilibili.com/312249633/lists/8719249?type=season)
+
 ## 安装
 
 把这句话发给你的 agent：

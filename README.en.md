@@ -2,6 +2,8 @@
 
 [中文](./README.md) · **English**
 
+Companion skills for the Bilibili series *Re:从零开始的AI学习*. Each skill has an episode that explains why it works the way it does. [📺 Series (Chinese)](https://space.bilibili.com/312249633/lists/8719249?type=season)
+
 ## Install
 
 Send this to your agent:
