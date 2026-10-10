@@ -12,10 +12,16 @@ Install the skills from https://github.com/nagi-studio/skills
 
 > **Agent, do this:** run `npx skills@latest add nagi-studio/skills -g -y` to install into the user's global skills directory. If you are Claude Code, you can instead ask the user to run `/plugin marketplace add nagi-studio/skills` and `/plugin install nagi-skills@nagi-studio`. When done, list the installed skills and remind the user to restart the session.
 
-To install it yourself, expand the agent you use:
+To install it yourself:
+
+```bash
+npx skills@latest add nagi-studio/skills -g
+```
+
+This uses the [skills CLI](https://github.com/vercel-labs/skills). It detects which agents you have installed (Claude Code, Codex, Cursor, Antigravity, and more) and puts the skills in each one's skills directory. `-g` installs globally so every project can use them; drop it to install into the current project only. Add `-a <agent>` to target a specific agent.
 
 <details>
-<summary>Claude Code</summary>
+<summary>Claude Code can also install it as a plugin</summary>
 
 ```bash
 /plugin marketplace add nagi-studio/skills
@@ -24,23 +30,18 @@ To install it yourself, expand the agent you use:
 
 </details>
 
-<details>
-<summary>Codex, Cursor, Antigravity, and other agents</summary>
-
-```bash
-npx skills@latest add nagi-studio/skills -g
-```
-
-This uses the [skills CLI](https://github.com/vercel-labs/skills). It detects which agents you have installed and puts the skills in each one's skills directory (usually `.agents/skills/`). `-g` installs globally so every project can use them; drop it to install into the current project only. Add `-a <agent>` to target a specific agent.
-
-</details>
-
 ## Update
 
-Installed skills don't follow this repo on their own. Run an update when a new version is out.
+Installed skills don't follow this repo on their own. Run an update when a new version is out:
+
+```bash
+npx skills@latest update grill -g
+```
+
+Replace `grill` with the skill you want to update. Without a name, it updates every global skill on your machine, not just the ones from this repo.
 
 <details>
-<summary>Claude Code</summary>
+<summary>Installed as a Claude Code plugin</summary>
 
 In a terminal:
 
@@ -50,17 +51,6 @@ claude plugin update nagi-skills@nagi-studio
 ```
 
 Then run `/reload-plugins` in any open session, or restart.
-
-</details>
-
-<details>
-<summary>Installed with npx</summary>
-
-```bash
-npx skills@latest update grill -g
-```
-
-Replace `grill` with the skill you want to update. Without a name, it updates every global skill on your machine, not just the ones from this repo.
 
 </details>
 

@@ -12,10 +12,16 @@
 
 > **Agent 请照做：** 运行 `npx skills@latest add nagi-studio/skills -g -y` 安装到用户全局目录。如果你是 Claude Code，也可以让用户运行 `/plugin marketplace add nagi-studio/skills` 和 `/plugin install nagi-skills@nagi-studio`。装完列出已安装的 skill，并提醒用户重启会话。
 
-想自己装，按你用的 agent 展开：
+自己装：
+
+```bash
+npx skills@latest add nagi-studio/skills -g
+```
+
+用的是 [skills CLI](https://github.com/vercel-labs/skills)，会自动识别本机装了哪些 agent（Claude Code、Codex、Cursor、Antigravity 等），装进各自的 skills 目录。`-g` 表示装到全局，所有项目都能用；去掉它就只装进当前项目。加 `-a <agent>` 可以指定某个 agent。
 
 <details>
-<summary>Claude Code</summary>
+<summary>Claude Code 也可以用插件装</summary>
 
 ```bash
 /plugin marketplace add nagi-studio/skills
@@ -24,23 +30,18 @@
 
 </details>
 
-<details>
-<summary>Codex、Cursor、Antigravity 等其他 agent</summary>
-
-```bash
-npx skills@latest add nagi-studio/skills -g
-```
-
-用的是 [skills CLI](https://github.com/vercel-labs/skills)，会自动识别本机装了哪些 agent，装进各自的 skills 目录（多数是 `.agents/skills/`）。`-g` 表示装到全局，所有项目都能用；去掉它就只装进当前项目。加 `-a <agent>` 可以指定某个 agent。
-
-</details>
-
 ## 更新
 
-装好的 skill 不会自己跟着仓库更新，仓库有新版本时手动跑一次。
+装好的 skill 不会自己跟着仓库更新，仓库有新版本时手动跑一次：
+
+```bash
+npx skills@latest update grill -g
+```
+
+`grill` 换成要更新的 skill 名；不写名字会更新本机所有全局 skill，不只是这个仓库的。
 
 <details>
-<summary>Claude Code</summary>
+<summary>用 Claude Code 插件装的</summary>
 
 在终端里运行：
 
@@ -50,17 +51,6 @@ claude plugin update nagi-skills@nagi-studio
 ```
 
 已经开着的会话运行 `/reload-plugins`，或者重启。
-
-</details>
-
-<details>
-<summary>用 npx 装的</summary>
-
-```bash
-npx skills@latest update grill -g
-```
-
-`grill` 换成要更新的 skill 名；不写名字会更新本机所有全局 skill，不只是这个仓库的。
 
 </details>
 
