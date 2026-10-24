@@ -72,6 +72,11 @@ claude plugin update nagi-skills@nagi-studio
   - 来源：思路受 Matt Pocock 的 [grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)（MIT）启发，重写为面向所有人的通用版：中文、5 档追问强度、问到「剩下的未知不再影响下一步」就停。
 - [`architect`](./skills/pondering/architect)：需求清楚之后，比较两三套技术方案并推荐一套。按你管得过来的程度排序，每套写明你得自己管哪些密钥和权限。接着 grill 的决策记录往下做。
 
+### Building
+
+- [`prove-it`](./skills/building/prove-it)：让 agent 拿证据交差，而不是一句「做好了」：交差前跑测试、在真浏览器里点一遍并截图；同一个错被纠正第二次，就把它变成下次一犯就报错的检查；顺手清理三种垃圾测试。
+  - 来源：「把错误变成会报错的检查」这个思路来自 Poteto 的 [correct](https://github.com/cursor/plugins/tree/main/pstack/skills/correct)；三种垃圾测试的判断参考了 Matt Pocock 的 [tdd](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd)；浏览器里点一遍再截图的做法，来自 [Voyager](https://github.com/voyager-crew/voyager) 专用的 [verify-in-browser](https://github.com/voyager-crew/voyager/blob/main/.agents/skills/verify-in-browser/SKILL.md)，改写成了任何网页项目都能用的通用版。
+
 ## 维护
 
 ```bash

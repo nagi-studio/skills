@@ -72,6 +72,11 @@ Then run `/reload-plugins` in any open session, or restart.
   - Credit: inspired by Matt Pocock's [grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling) (MIT), rewritten as a general-purpose version for everyone: Chinese-first, five intensity levels, and it stops once the remaining unknowns no longer change the next step.
 - [`architect`](./skills/pondering/architect): Once the requirements are clear, compares two or three tech stacks and recommends one. Ranked by what you can actually maintain; each option lists the keys and permissions you would have to guard yourself. Picks up from grill's decision log.
 
+### Building
+
+- [`prove-it`](./skills/building/prove-it): Makes the agent hand in evidence instead of "done": run the tests, click through the change in a real browser and screenshot it; when you correct the same mistake twice, turn it into a check that fails the next time; clean up three kinds of junk tests.
+  - Credit: the idea of turning mistakes into checks that fail comes from Poteto's [correct](https://github.com/cursor/plugins/tree/main/pstack/skills/correct); the three kinds of junk tests draw on Matt Pocock's [tdd](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd); clicking through in a real browser and screenshotting comes from [Voyager](https://github.com/voyager-crew/voyager)'s project-specific [verify-in-browser](https://github.com/voyager-crew/voyager/blob/main/.agents/skills/verify-in-browser/SKILL.md), generalised for any web project.
+
 ## Maintaining
 
 ```bash

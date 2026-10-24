@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prove It"
+  short_description: "让 agent 自己证明做好了，同一个错不再犯第二次"
+  default_prompt: "这个错它又犯了，让它证明不会再犯："
