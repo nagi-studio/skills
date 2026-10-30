@@ -19,6 +19,7 @@
   "skills": [
     "./skills/pondering/grill",
     "./skills/pondering/architect",
-    "./skills/building/prove-it"
+    "./skills/building/prove-it",
+    "./skills/building/taste"
   ]
 }

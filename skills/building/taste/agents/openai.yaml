@@ -1,0 +1,4 @@
+interface:
+  display_name: "Taste"
+  short_description: "你定审美，它挑组件、出方向、截图去掉 AI 味"
+  default_prompt: "这个界面一股 AI 味，帮我改："
