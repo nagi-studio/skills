@@ -1,0 +1,4 @@
+interface:
+  display_name: "De-slop"
+  short_description: "截图对着清单查，删掉多余的，去掉界面的 AI 味"
+  default_prompt: "这个界面一股 AI 味，帮我改："
