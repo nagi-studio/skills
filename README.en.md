@@ -73,6 +73,8 @@ Then run `/reload-plugins` in any open session, or restart.
 
 ### Rookie
 
+For people just starting to build things with agents. These three are really training for your own head: whether you install the skills matters less than remembering the habits—compare options before building, ask for evidence instead of "done", and strip things back against a checklist before handing in. Once they stick, you will ask any agent for the same, skill or no skill.
+
 - [`architect`](./skills/rookie/architect): Once the requirements are clear, compares two or three tech stacks and recommends one. Ranked by what you can actually maintain; each option lists the keys and permissions you would have to guard yourself. Picks up from grill's decision log. [📺 Video (Chinese)](https://www.bilibili.com/video/BV1TtpL6SEvg)
 - [`prove-it`](./skills/rookie/prove-it): Makes the agent hand in evidence instead of "done": run the tests, click through the change in a real browser and screenshot it; when you correct the same mistake twice, turn it into a check that fails the next time; clean up three kinds of junk tests.
   - Credit: the idea of turning mistakes into checks that fail comes from Poteto's [correct](https://github.com/cursor/plugins/tree/main/pstack/skills/correct); the three kinds of junk tests draw on Matt Pocock's [tdd](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd); clicking through in a real browser and screenshotting comes from [Voyager](https://github.com/voyager-crew/voyager)'s project-specific [verify-in-browser](https://github.com/voyager-crew/voyager/blob/main/.agents/skills/verify-in-browser/SKILL.md), generalised for any web project.
