@@ -18,8 +18,8 @@
   ],
   "skills": [
     "./skills/pondering/grill",
-    "./skills/pondering/architect",
-    "./skills/building/prove-it",
-    "./skills/building/de-slop"
+    "./skills/rookie/architect",
+    "./skills/rookie/prove-it",
+    "./skills/rookie/de-slop"
   ]
 }
