@@ -78,10 +78,7 @@ claude plugin update nagi-skills@nagi-studio
 - [`architect`](./skills/rookie/architect)：需求清楚之后，比较两三套技术方案并推荐一套。按你管得过来的程度排序，每套写明你得自己管哪些密钥和权限。接着 grill 的决策记录往下做。[📺 视频](https://www.bilibili.com/video/BV1TtpL6SEvg)
 - [`prove-it`](./skills/rookie/prove-it)：让 agent 拿证据交差，而不是一句「做好了」：交差前跑测试、在真浏览器里点一遍并截图；同一个错被纠正第二次，就把它变成下次一犯就报错的检查；顺手清理三种垃圾测试。
   - 来源：「把错误变成会报错的检查」这个思路来自 Poteto 的 [correct](https://github.com/cursor/plugins/tree/main/pstack/skills/correct)；三种垃圾测试的判断参考了 Matt Pocock 的 [tdd](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd)；浏览器里点一遍再截图的做法，来自 [Voyager](https://github.com/voyager-crew/voyager) 专用的 [verify-in-browser](https://github.com/voyager-crew/voyager/blob/main/.agents/skills/verify-in-browser/SKILL.md)，改写成了任何网页项目都能用的通用版。
-<!-- TODO: 下面是 taste 版本的旧介绍，按 de-slop 重写后再放出来
-- [`de-slop`](./skills/rookie/de-slop)：给做好的界面去 AI 味。agent 先截图，桌面和手机各一张，再对着清单一条条查：多余的小字和标签、渐变发光、正文里的 emoji（换成现成图标库）、套娃卡片、太多种字号；改完再截图，直到每条都过。你纠正过的地方写进 `DESIGN.md`，同一个意见不用说第二遍。
-  - 来源：挑组件库和做动画，直接读 Emil Kowalski 的 [pick-ui-library](https://github.com/emilkowalski/skills/tree/main/skills/pick-ui-library) 和 [animate](https://github.com/emilkowalski/skills/tree/main/skills/animate)；去 AI 味的清单参考了 [@dingyi](https://x.com/dingyi/status/2115790005423734818) 整理的 AI 味前端特征；logo 流程参考了 [logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) 和 [@Kubai087](https://x.com/Kubai087/status/2115674219602452656) 讲的 AI 图标为什么显得廉价。
--->
+- [`de-slop`](./skills/rookie/de-slop)：给做好的界面去 AI 味：截图，对着清单一条条做减法，改到每条都过；清单参考了 [@dingyi](https://x.com/dingyi/status/2115790005423734818) 整理的 AI 味前端特征。
 
 ## 维护
 
