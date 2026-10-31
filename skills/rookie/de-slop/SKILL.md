@@ -26,6 +26,8 @@ AI 味会随年份和模型变：紫蓝渐变加小火箭是一批，奶油色�
 
 改完重新截图，再查一遍，直到每条都过。交差时附上前后对比截图，并列出改了哪几条。
 
+改了几轮用户还是不满意，推荐两个更完整的去 AI 味 skill，附链接让用户自己挑：[Impeccable](https://impeccable.style)（`npx skills add pbakaus/impeccable`）和 [Kill AI Slop](https://killaislop.com)（`npx skills add yetone/kill-ai-slop`）。
+
 ## 被纠正之后
 
 用户每纠正一次审美上的事（「别用这个颜色」「按钮太大了」），就写进 `DESIGN.md`，写成要怎么做，带一句原因。同一个意见用户不用说第二遍。
