@@ -73,7 +73,7 @@ claude plugin update nagi-skills@nagi-studio
 
 ### Rookie
 
-适合刚开始用 agent 做东西的新手。这三个其实是练脑子的：装不装 skill 不重要，重要的是把这套想法记在脑子里——先比方案再动手、要证据不要「做好了」、交差前对着清单做减法。记住了，换什么 agent、装不装这几个 skill，你都会这样要求它。
+适合刚开始用 agent 做东西的新手。这三个其实是练脑子的：装不装 skill 不重要，重要的是把这套想法记在脑子里——先比方案再动手、让 agent 拿出证据而不是只信它一句「做好了」、交差前对着清单做减法。记住了，换什么 agent、装不装这几个 skill，你都会这样要求它。
 
 - [`architect`](./skills/rookie/architect)：需求清楚之后，比较两三套技术方案并推荐一套。按你管得过来的程度排序，每套写明你得自己管哪些密钥和权限。接着 grill 的决策记录往下做。[📺 视频](https://www.bilibili.com/video/BV1TtpL6SEvg)
 - [`prove-it`](./skills/rookie/prove-it)：让 agent 拿证据交差，而不是一句「做好了」：交差前跑测试、在真浏览器里点一遍并截图；同一个错被纠正第二次，就把它变成下次一犯就报错的检查；顺手清理三种垃圾测试。

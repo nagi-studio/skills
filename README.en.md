@@ -73,7 +73,7 @@ Then run `/reload-plugins` in any open session, or restart.
 
 ### Rookie
 
-For people just starting to build things with agents. These three are really training for your own head: whether you install the skills matters less than remembering the habits—compare options before building, ask for evidence instead of "done", and strip things back against a checklist before handing in. Once they stick, you will ask any agent for the same, skill or no skill.
+For people just starting to build things with agents. These three are really training for your own head: whether you install the skills matters less than remembering the habits—compare options before building, make the agent show evidence instead of taking its word that it is "done", and strip things back against a checklist before handing in. Once they stick, you will ask any agent for the same, skill or no skill.
 
 - [`architect`](./skills/rookie/architect): Once the requirements are clear, compares two or three tech stacks and recommends one. Ranked by what you can actually maintain; each option lists the keys and permissions you would have to guard yourself. Picks up from grill's decision log. [📺 Video (Chinese)](https://www.bilibili.com/video/BV1TtpL6SEvg)
 - [`prove-it`](./skills/rookie/prove-it): Makes the agent hand in evidence instead of "done": run the tests, click through the change in a real browser and screenshot it; when you correct the same mistake twice, turn it into a check that fails the next time; clean up three kinds of junk tests.
