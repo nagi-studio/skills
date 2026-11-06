@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tidy"
+  short_description: "给项目做大扫除，让 agent 每次读的东西少一点"
+  default_prompt: "项目越来越大，它开始改东忘西了，帮我大扫除一下："

@@ -20,6 +20,7 @@
     "./skills/pondering/grill",
     "./skills/rookie/architect",
     "./skills/rookie/prove-it",
-    "./skills/rookie/de-slop"
+    "./skills/rookie/de-slop",
+    "./skills/rookie/tidy"
   ]
 }
