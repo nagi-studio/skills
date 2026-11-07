@@ -68,8 +68,9 @@ Then run `/reload-plugins` in any open session, or restart.
 
 ### Pondering
 
-- [`grill`](./skills/pondering/grill): Questions you about a plan or idea, round by round, until the important unknowns surface. Five intensity levels. Works for any domain. [📺 Video (Chinese)](https://www.bilibili.com/video/BV1irHx6dEEf)
-  - Credit: inspired by Matt Pocock's [grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling) (MIT), rewritten as a general-purpose version for everyone: Chinese-first, five intensity levels, and it stops once the remaining unknowns no longer change the next step.
+| Skill | What it does | Video (Chinese) |
+|---|---|---|
+| [`grill`](./skills/pondering/grill) | Questions you about a plan or idea, round by round, until the important unknowns surface. Five intensity levels. Works for any domain.<br><sub>Credit: inspired by Matt Pocock's [grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling) (MIT), rewritten as a general-purpose version for everyone: Chinese-first, five intensity levels, and it stops once the remaining unknowns no longer change the next step.</sub> | [<img src="./assets/videos/BV1irHx6dEEf.jpg" width="240" alt="📺">](https://www.bilibili.com/video/BV1irHx6dEEf) |
 
 ### Rookie
 
