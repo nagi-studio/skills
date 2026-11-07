@@ -75,12 +75,12 @@ claude plugin update nagi-skills@nagi-studio
 
 适合刚开始用 agent 做东西的新手。这几个其实是练脑子的：装不装 skill 不重要，重要的是把这套想法记在脑子里——先比方案再动手、让 agent 拿出证据而不是只信它一句「做好了」、交差前对着清单做减法、项目大了就给它大扫除。记住了，换什么 agent、装不装这几个 skill，你都会这样要求它。
 
-- [`architect`](./skills/rookie/architect)：需求清楚之后，比较两三套技术方案并推荐一套。按你管得过来的程度排序，每套写明你得自己管哪些密钥和权限。接着 grill 的决策记录往下做。[📺 视频](https://www.bilibili.com/video/BV1TtpL6SEvg)
-- [`prove-it`](./skills/rookie/prove-it)：让 agent 拿证据交差，而不是一句「做好了」：交差前跑测试、在真浏览器里点一遍并截图；同一个错被纠正第二次，就把它变成下次一犯就报错的检查；顺手清理三种垃圾测试。 [📺 视频](https://www.bilibili.com/video/BV1BgH36DE7y)
-  - 来源：「把错误变成会报错的检查」这个思路来自 Poteto 的 [correct](https://github.com/cursor/plugins/tree/main/pstack/skills/correct)；三种垃圾测试的判断参考了 Matt Pocock 的 [tdd](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd)；浏览器里点一遍再截图的做法，来自 [Voyager](https://github.com/voyager-crew/voyager) 专用的 [verify-in-browser](https://github.com/voyager-crew/voyager/blob/main/.agents/skills/verify-in-browser/SKILL.md)，改写成了任何网页项目都能用的通用版。
-- [`de-slop`](./skills/rookie/de-slop)：给做好的界面去 AI 味：截图，对着清单一条条做减法，改到每条都过；清单参考了 [@dingyi](https://x.com/dingyi/status/2115790005423734818) 整理的 AI 味前端特征。 [📺 视频](https://www.bilibili.com/video/BV1pbxr6REJi)
-- [`tidy`](./skills/rookie/tidy)：项目变大、agent 开始改东忘西时，给项目做一次大扫除：同一条规矩收成一处，清掉死代码和废话注释，装上超过 5,000 token 就拒绝提交的钩子，给 AGENTS.md 和工具瘦身。 [📺 视频](https://www.bilibili.com/video/BV1Gu4L6iEdc)
-  - 来源：文件大小钩子来自 Matt Pocock 的[提交前钩子](https://x.com/mattpocockuk/status/2111708560715292675)。
+| Skill | 做什么 | 视频 |
+|---|---|---|
+| [`architect`](./skills/rookie/architect) | 需求清楚之后，比较两三套技术方案并推荐一套。按你管得过来的程度排序，每套写明你得自己管哪些密钥和权限。接着 grill 的决策记录往下做。 | [<img src="./assets/videos/BV1TtpL6SEvg.jpg" width="240" alt="📺">](https://www.bilibili.com/video/BV1TtpL6SEvg) |
+| [`prove-it`](./skills/rookie/prove-it) | 让 agent 拿证据交差，而不是一句「做好了」：交差前跑测试、在真浏览器里点一遍并截图；同一个错被纠正第二次，就把它变成下次一犯就报错的检查；顺手清理三种垃圾测试。<br><sub>来源：「把错误变成会报错的检查」这个思路来自 Poteto 的 [correct](https://github.com/cursor/plugins/tree/main/pstack/skills/correct)；三种垃圾测试的判断参考了 Matt Pocock 的 [tdd](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd)；浏览器里点一遍再截图的做法，来自 [Voyager](https://github.com/voyager-crew/voyager) 专用的 [verify-in-browser](https://github.com/voyager-crew/voyager/blob/main/.agents/skills/verify-in-browser/SKILL.md)，改写成了任何网页项目都能用的通用版。</sub> | [<img src="./assets/videos/BV1BgH36DE7y.jpg" width="240" alt="📺">](https://www.bilibili.com/video/BV1BgH36DE7y) |
+| [`de-slop`](./skills/rookie/de-slop) | 给做好的界面去 AI 味：截图，对着清单一条条做减法，改到每条都过；清单参考了 [@dingyi](https://x.com/dingyi/status/2115790005423734818) 整理的 AI 味前端特征。 | [<img src="./assets/videos/BV1pbxr6REJi.jpg" width="240" alt="📺">](https://www.bilibili.com/video/BV1pbxr6REJi) |
+| [`tidy`](./skills/rookie/tidy) | 项目变大、agent 开始改东忘西时，给项目做一次大扫除：同一条规矩收成一处，清掉死代码和废话注释，装上超过 5,000 token 就拒绝提交的钩子，给 AGENTS.md 和工具瘦身。<br><sub>来源：文件大小钩子来自 Matt Pocock 的[提交前钩子](https://x.com/mattpocockuk/status/2111708560715292675)。</sub> | [<img src="./assets/videos/BV1Gu4L6iEdc.jpg" width="240" alt="📺">](https://www.bilibili.com/video/BV1Gu4L6iEdc) |
 
 ## 维护
 
