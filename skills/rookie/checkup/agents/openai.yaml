@@ -1,0 +1,4 @@
+interface:
+  display_name: "Checkup"
+  short_description: "体检并清理 Codex 和 DSH 的吃灰 skill、MCP、plugin 和失效配置"
+  default_prompt: "帮我给本机的 Codex 和 DSH 做一次扩展体检，看看哪些 skill、MCP、插件在吃灰或占上下文："
