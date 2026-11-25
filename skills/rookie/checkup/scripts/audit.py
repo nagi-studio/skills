@@ -30,6 +30,11 @@ try:
 except ImportError:
     _stdlib_zstd = None
 
+try:  # pip install zstandard — 覆盖 Python 3.11~3.13（compression.zstd 只在 3.14+）
+    import zstandard as _zstandard
+except ImportError:
+    _zstandard = None
+
 HOME = Path.home()
 ZSTD_BIN = shutil.which("zstd")
 
@@ -68,6 +73,12 @@ def read_log(path: Path) -> tuple[str | None, bool]:
         if ZSTD_BIN:
             res = subprocess.run([ZSTD_BIN, "-dc", str(path)], capture_output=True, timeout=10, check=False)
             return (res.stdout.decode("utf-8", errors="ignore") if res.returncode == 0 else None), False
+        if _zstandard is not None:
+            try:
+                with open(path, "rb") as fh, _zstandard.ZstdDecompressor().stream_reader(fh) as reader:
+                    return reader.read().decode("utf-8", errors="ignore"), False
+            except Exception:
+                return None, False
         return None, True
     try:
         return path.read_text(encoding="utf-8", errors="ignore"), False
@@ -344,11 +355,21 @@ def audit_dsh(days: int) -> dict[str, Any]:
                 tools = (data.get("header") or {}).get("tools")
                 if isinstance(tools, list):
                     mcp_tools = [t for t in tools if isinstance(t, dict) and str(t.get("name") or "").startswith("mcp__")]
+                    total_chars = len(json.dumps(tools, ensure_ascii=False)) if tools else 0
+                    # DSH 新版把 bridge 提供的工具（dsh_host 等）写成裸名，没有 mcp__ 前缀，
+                    # 按前缀归因会得到 0 —— 这时只能拿总量判预算，并明确告知归因不可用。
+                    attribution = "prefix" if mcp_tools else "unavailable_bare_names"
+                    mcp_chars = len(json.dumps(mcp_tools, ensure_ascii=False)) if mcp_tools else 0
                     header_overhead = {
                         "tools_count": len(tools),
-                        "tools_schema_chars": len(json.dumps(tools, ensure_ascii=False)) if tools else 0,
+                        "tools_schema_chars": total_chars,
                         "mcp_tools_count": len(mcp_tools),
-                        "mcp_schema_chars": len(json.dumps(mcp_tools, ensure_ascii=False)) if mcp_tools else 0,
+                        "mcp_schema_chars": mcp_chars,
+                        "mcp_attribution": attribution,
+                        "budget_warnings": (
+                            (["mcp_schema_over_20k"] if mcp_chars > 20000 else [])
+                            + (["tool_schema_total_over_20k_unattributed"] if attribution != "prefix" and total_chars > 20000 else [])
+                        ),
                         "observed": iso_day(ts),
                     }
                     hdr_ts = ts
@@ -366,6 +387,9 @@ def audit_dsh(days: int) -> dict[str, Any]:
         "installed": True,
         "sessions_scanned": scanned,
         "skipped_zst": skipped,
+        "zstd_available": bool(_stdlib_zstd or ZSTD_BIN or _zstandard),
+        # 有压缩日志却被跳过 → 统计不可信，必须报警而不是把扩展判成吃灰
+        "zstd_missing_gate": skipped > 0 and not (_stdlib_zstd or ZSTD_BIN or _zstandard),
         "recognized_events": recognized,
         "schema_unrecognized": scanned >= 5 and recognized == 0,
         "overhead": {"request_header": header_overhead, "skill_catalog_chars": catalog_chars},
@@ -393,7 +417,7 @@ def main() -> int:
     args = ap.parse_args()
     out: dict[str, Any] = {
         "days": args.days,
-        "zstd": "stdlib" if _stdlib_zstd else ("cli" if ZSTD_BIN else "none"),
+        "zstd": "stdlib" if _stdlib_zstd else ("cli" if ZSTD_BIN else ("zstandard" if _zstandard else "none")),
     }
     if args.agent in ("codex", "all"):
         out["codex"] = audit_codex(args.days)
