@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Read-only log counter & resident overhead probe for Codex and DSH.
 
-Stdlib only (Python 3.11+; zstd via Python 3.14+ compression.zstd or `zstd` CLI).
+Stdlib only (Python 3.11+; zstd via Python 3.14+ compression.zstd, `zstd` CLI, or optional `zstandard`).
 Outputs compact JSON (< 3 KB typical). Static config parsing stays in SKILL.md.
+
+This is a fast path, not the source of truth: it only knows the log formats of the
+client versions in VERIFIED_WITH. When a gate trips, SKILL.md switches the agent to
+references/log-formats.md and an ad-hoc count.
 """
 
 from __future__ import annotations
@@ -38,10 +42,25 @@ except ImportError:
 HOME = Path.home()
 ZSTD_BIN = shutil.which("zstd")
 
+# Client versions whose log formats this script was last checked against.
+VERIFIED_WITH = {"codex": "0.170.0", "dsh": "0.2.2-rc.5"}
+
+
+def client_version(binary: str) -> str | None:
+    exe = shutil.which(binary)
+    if not exe:
+        return None
+    try:
+        res = subprocess.run([exe, "--version"], capture_output=True, timeout=5, check=False)
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    out = (res.stdout or res.stderr).decode("utf-8", errors="ignore").strip().splitlines()
+    return out[0] if res.returncode == 0 and out else None
+
 # Read-only shell commands counted for Codex heuristic SKILL.md reads (avoids rg/sed edit noise).
-READ_CMD_RE = re.compile(r"(?:^|[;&|]\s*)(?:cat|head|tail|less|bat|nl|sed\s+-n|awk)\b")
+READ_CMD_RE = re.compile(r"(?:^|[;&|(]\s*)(?:cat|head|tail|less|bat|nl|sed\s+-n|awk|type|gc|Get-Content)\b", re.I)
 SKILL_TAG_RE = re.compile(r"<skill>\s*<name>([^<]+)</name>")
-SKILL_PATH_RE = re.compile(r"([A-Za-z0-9._-]+)/SKILL\.md\b")
+SKILL_PATH_RE = re.compile(r"([A-Za-z0-9._-]+)[/\\]+SKILL\.md\b")
 DSH_SKILL_CONTENT_RE = re.compile(r'<skill_content\s+name="([^"]+)"')
 
 
@@ -63,27 +82,34 @@ def to_epoch(val: Any) -> float | None:
     return None
 
 
-def read_log(path: Path) -> tuple[str | None, bool]:
-    if path.suffix.lower() in (".zst", ".zstd"):
-        if _stdlib_zstd is not None:
-            try:
-                return _stdlib_zstd.decompress(path.read_bytes()).decode("utf-8", errors="ignore"), False
-            except Exception:
-                return None, False
-        if ZSTD_BIN:
-            res = subprocess.run([ZSTD_BIN, "-dc", str(path)], capture_output=True, timeout=10, check=False)
-            return (res.stdout.decode("utf-8", errors="ignore") if res.returncode == 0 else None), False
-        if _zstandard is not None:
-            try:
-                with open(path, "rb") as fh, _zstandard.ZstdDecompressor().stream_reader(fh) as reader:
-                    return reader.read().decode("utf-8", errors="ignore"), False
-            except Exception:
-                return None, False
-        return None, True
-    try:
-        return path.read_text(encoding="utf-8", errors="ignore"), False
-    except OSError:
-        return None, False
+def read_log(path: Path) -> tuple[str | None, str | None]:
+    """Return (text, problem); problem is None, "no_decompressor" or "unreadable"."""
+    if path.suffix.lower() not in (".zst", ".zstd"):
+        try:
+            return path.read_text(encoding="utf-8", errors="ignore"), None
+        except OSError:
+            return None, "unreadable"
+    if not (_stdlib_zstd or ZSTD_BIN or _zstandard):
+        return None, "no_decompressor"
+    if _stdlib_zstd is not None:
+        try:
+            return _stdlib_zstd.decompress(path.read_bytes()).decode("utf-8", errors="ignore"), None
+        except Exception:
+            pass
+    if ZSTD_BIN:
+        try:
+            res = subprocess.run([ZSTD_BIN, "-dc", str(path)], capture_output=True, timeout=30, check=False)
+            if res.returncode == 0:
+                return res.stdout.decode("utf-8", errors="ignore"), None
+        except (OSError, subprocess.TimeoutExpired):
+            pass
+    if _zstandard is not None:
+        try:
+            with open(path, "rb") as fh, _zstandard.ZstdDecompressor().stream_reader(fh) as reader:
+                return reader.read().decode("utf-8", errors="ignore"), None
+        except Exception:
+            pass
+    return None, "unreadable"
 
 
 def scan_skill_dirs(dirs: list[Path]) -> tuple[dict[str, int], list[str]]:
@@ -147,7 +173,8 @@ def audit_codex(days: int) -> dict[str, Any]:
 
     cutoff = time.time() - days * 86400
     sessions_root = home / "sessions"
-    scanned = skipped = recognized = 0
+    scanned = skipped = unreadable = recognized = 0
+    log_versions: set[str] = set()
     mcp: dict[str, list[Any]] = {}  # name -> [calls, set(sessions), last_ts, failed]
     plugin_mcp: dict[str, list[Any]] = {}  # pid -> [calls, last_ts]
     sk_explicit: dict[str, list[Any]] = {}  # name -> [set(sessions), last_ts]
@@ -161,16 +188,19 @@ def audit_codex(days: int) -> dict[str, Any]:
     ) if sessions_root.exists() else []
 
     for mt, p in files:
-        text, skip = read_log(p)
-        if skip:
+        text, problem = read_log(p)
+        if problem == "no_decompressor":
             skipped += 1
+            continue
+        if problem:
+            unreadable += 1
             continue
         if not text:
             continue
         scanned += 1
         sid = p.name
         for line in text.splitlines():
-            if not any(k in line for k in ('"McpToolCall"', "<skill>", "SKILL.md", '"host_skills"')):
+            if not any(k in line for k in ('"McpToolCall"', "<skill>", "SKILL.md", '"host_skills"', '"session_meta"')):
                 continue
             try:
                 obj = json.loads(line)
@@ -178,6 +208,10 @@ def audit_codex(days: int) -> dict[str, Any]:
                 continue
             ts = to_epoch(obj.get("timestamp")) or mt
             et, pl = obj.get("type"), obj.get("payload") or {}
+            if et == "session_meta" and pl.get("cli_version"):
+                log_versions.add(str(pl["cli_version"]))
+            if ts < cutoff:  # a recently touched file can still hold old events
+                continue
 
             if et == "event_msg" and pl.get("type") == "item_completed":
                 it = pl.get("item") or {}
@@ -246,10 +280,15 @@ def audit_codex(days: int) -> dict[str, Any]:
 
     return {
         "installed": True,
+        "version": client_version("codex"),
+        "verified_with": VERIFIED_WITH["codex"],
+        "log_versions": sorted(log_versions),
         "sessions_scanned": scanned,
         "skipped_zst": skipped,
+        "unreadable_logs": unreadable,
         "recognized_events": recognized,
         "schema_unrecognized": scanned >= 5 and recognized == 0,
+        "skill_usage_unverified": bool(active_skills) and (scanned == 0 or not used_names),
         "host_skills_usage": host_skills_usage,
         "active_skills_count": len(active_skills),
         "duplicate_skills": dups,
@@ -279,7 +318,7 @@ def audit_dsh(days: int) -> dict[str, Any]:
 
     cutoff = time.time() - days * 86400
     sessions_root = home / "sessions"
-    scanned = skipped = recognized = 0
+    scanned = skipped = unreadable = recognized = 0
     mcp: dict[str, list[Any]] = {}  # server -> [calls, set(sessions), last_ts]
     sk_user: dict[str, list[Any]] = {}  # name -> [set(sessions), last_ts]
     sk_model: dict[str, list[Any]] = {}  # name -> [set(sessions), last_ts]
@@ -294,9 +333,12 @@ def audit_dsh(days: int) -> dict[str, Any]:
     ) if sessions_root.exists() else []
 
     for mt, p in files:
-        text, skip = read_log(p)
-        if skip:
+        text, problem = read_log(p)
+        if problem == "no_decompressor":
             skipped += 1
+            continue
+        if problem:
+            unreadable += 1
             continue
         if not text:
             continue
@@ -311,6 +353,10 @@ def audit_dsh(days: int) -> dict[str, Any]:
                 continue
             ts = to_epoch(obj.get("time")) or mt
             et, data = obj.get("type"), obj.get("data") or {}
+
+            if et in ("tool/call", "user/message") and ts < cutoff:
+                if "<available_skills>" not in line:
+                    continue
 
             if et == "tool/call":
                 recognized += 1
@@ -358,7 +404,9 @@ def audit_dsh(days: int) -> dict[str, Any]:
                     total_chars = len(json.dumps(tools, ensure_ascii=False)) if tools else 0
                     # DSH 新版把 bridge 提供的工具（dsh_host 等）写成裸名，没有 mcp__ 前缀，
                     # 按前缀归因会得到 0 —— 这时只能拿总量判预算，并明确告知归因不可用。
-                    attribution = "prefix" if mcp_tools else "unavailable_bare_names"
+                    # Built-in tools are always bare, so bare names can hide MCP tools even when some
+                    # carry the prefix; the total is the only number that never under-reports.
+                    attribution = "no_tools" if not tools else ("prefix_partial" if mcp_tools else "unavailable_bare_names")
                     mcp_chars = len(json.dumps(mcp_tools, ensure_ascii=False)) if mcp_tools else 0
                     header_overhead = {
                         "tools_count": len(tools),
@@ -368,7 +416,7 @@ def audit_dsh(days: int) -> dict[str, Any]:
                         "mcp_attribution": attribution,
                         "budget_warnings": (
                             (["mcp_schema_over_20k"] if mcp_chars > 20000 else [])
-                            + (["tool_schema_total_over_20k_unattributed"] if attribution != "prefix" and total_chars > 20000 else [])
+                            + (["tool_schema_total_over_20k"] if total_chars > 20000 else [])
                         ),
                         "observed": iso_day(ts),
                     }
@@ -385,13 +433,17 @@ def audit_dsh(days: int) -> dict[str, Any]:
 
     return {
         "installed": True,
+        "version": client_version("dsh"),
+        "verified_with": VERIFIED_WITH["dsh"],
         "sessions_scanned": scanned,
         "skipped_zst": skipped,
+        "unreadable_logs": unreadable,
         "zstd_available": bool(_stdlib_zstd or ZSTD_BIN or _zstandard),
         # 有压缩日志却被跳过 → 统计不可信，必须报警而不是把扩展判成吃灰
         "zstd_missing_gate": skipped > 0 and not (_stdlib_zstd or ZSTD_BIN or _zstandard),
         "recognized_events": recognized,
         "schema_unrecognized": scanned >= 5 and recognized == 0,
+        "skill_usage_unverified": bool(active_skills) and (scanned == 0 or not used_names),
         "overhead": {"request_header": header_overhead, "skill_catalog_chars": catalog_chars},
         "active_skills_count": len(active_skills),
         "duplicate_skills": dups,
@@ -415,6 +467,8 @@ def main() -> int:
     ap.add_argument("--agent", choices=("codex", "dsh", "all"), default="all")
     ap.add_argument("--days", type=int, default=30)
     args = ap.parse_args()
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")  # Windows consoles/redirects default to a legacy code page
     out: dict[str, Any] = {
         "days": args.days,
         "zstd": "stdlib" if _stdlib_zstd else ("cli" if ZSTD_BIN else ("zstandard" if _zstandard else "none")),
